@@ -3,14 +3,14 @@
 
 inherit eutils
 
-DESCRIPTION="Proxy DNS server with permanent caching"
+SUMMARY="Proxy DNS server with permanent caching"
 HOMEPAGE="http://www.phys.uu.nl/~rombouts/pdnsd.html"
 DOWNLOADS="http://www.phys.uu.nl/~rombouts/pdnsd/releases/${PNV}-par.tar.gz"
 
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-IUSE="debug ipv6 isdn nptl underscores urandom"
+MYOPTION="debug ipv6 isdn nptl underscores urandom"
 
 pkg_setup() {
 	enewgroup pdnsd
@@ -45,11 +45,7 @@ src_install() {
 	docinto txt ; dodoc doc/txt/*
 	newdoc doc/pdnsd.conf pdnsd.conf.sample
 
-	newinitd "${FILESDIR}/pdnsd.rc6" pdnsd
-	newinitd "${FILESDIR}/pdnsd.online" pdnsd-online
-
-	dodir /etc/conf.d
-	local config="${D}/etc/conf.d/pdnsd-online"
+	newinitd "${FILES}/pdnsd.rc6" pdnsd
 
 	echo -e "# Enter the interface that connects you to the dns servers" >> "${config}"
 	echo "# This will correspond to /etc/init.d/net.${IFACE}" >> "${config}"
@@ -61,10 +57,6 @@ src_install() {
 	echo "# Command line options" >> "${config}"
 	use ipv6 && echo PDNSDCONFIG="-a" >> "${config}" \
 		|| echo PDNSDCONFIG="" >> "${config}"
-
-	# gentoo resolvconf support
-	exeinto /etc/resolvconf/update.d
-	newexe "${FILESDIR}/pdnsd.resolvconf-r1" pdnsd
 }
 
 src_test() {
