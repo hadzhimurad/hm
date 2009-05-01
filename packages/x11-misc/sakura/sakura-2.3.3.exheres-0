@@ -1,0 +1,19 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake
+
+SUMMARY="sakura is a terminal emulator based on GTK and VTE"
+HOMEPAGE="http://www.pleyades.net/david/sakura.php"
+DOWNLOADS="http://www.pleyades.net/david/projects/${PN}/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+	build+run:
+	>=dev-libs/vte-0.16.1:0
+	>=dev-libs/glib-2.14:2
+	>=x11-libs/gtk+-2.10:2
+"

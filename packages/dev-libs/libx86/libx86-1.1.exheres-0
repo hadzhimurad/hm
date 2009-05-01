@@ -1,0 +1,22 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require eutils multilib toolchain-funcs
+
+DESCRIPTION="A hardware-independent library for executing real-mode x86 code"
+HOMEPAGE="http://www.codon.org.uk/~mjg59/libx86"
+DOWNLOADS="http://www.codon.org.uk/~mjg59/${PN}/downloads/${PNV}.tar.gz"
+
+LICENCES="BSD"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+
+src_compile() {
+	local ARGS
+
+	if platform:amd64? ; then
+		ARGS="BACKEND=x86emu"
+	fi
+	emake ${ARGS}
+}

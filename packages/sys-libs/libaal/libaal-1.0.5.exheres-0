@@ -1,0 +1,25 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require toolchain-funcs
+
+DESCRIPTION="library required by reiser4progs"
+HOMEPAGE="http://www.kernel.org/pub/linux/utils/fs/reiser4/libaal/"
+DOWNLOADS="mirror://kernel/linux/utils/fs/reiser4/libaal/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-libminimal --enable-memory-manager )
+
+src_install() {
+	default
+	
+	# move shared libs to /
+	dodir /$(get_libdir)
+	mv "${IMAGE}"/usr/$(get_libdir)/lib*.so* "${IMAGE}"/$(get_libdir)/
+	
+	dodoc AUTHORS BUGS CREDITS ChangeLog NEWS README THANKS TODO
+}

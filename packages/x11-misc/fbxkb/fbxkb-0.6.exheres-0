@@ -1,0 +1,34 @@
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require eutils
+
+SUMMARY="X11 keyboard indicator and switcher"
+HOMEPAGE="http://freshmeat.net/projects/fbxkb/"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tgz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+	build+run:
+	x11-libs/libX11
+	>=x11-libs/gtk+-2.6
+	x11-libs/pixman
+	dev-libs/atk
+	media-libs/libpng
+	build:
+	dev-util/pkg-config"
+
+src_prepare() {
+	sed -i 's/install -d $(PREFIX)\/bin/install -d $(DESTDIR)$(PREFIX)\/bin/' Makefile || die "Sed filed"
+	sed -i 's/install -m 755 $(TARGET) $(PREFIX)\/bin/install -m 755 $(TARGET) $(DESTDIR)$(PREFIX)\/bin/' Makefile || die "Sed filed"
+	sed -i 's/install -d  $(PREFIX)\/share\/fbxkb/install -d  $(DESTDIR)$(PREFIX)\/share\/fbxkb/' images/Makefile || die "Sed filed"
+	sed -i 's/install -d  $(PREFIX)\/share\/fbxkb\/images/install -d  $(DESTDIR)$(PREFIX)\/share\/fbxkb\/images/' images/Makefile || die "Sed filed"
+	sed -i 's/install -m 644 \*.png $(PREFIX)\/share\/fbxkb\/images\//install -m 644 \*.png $(DESTDIR)$(PREFIX)\/share\/fbxkb\/images\//' images/Makefile || die "Sed filed"
+}
+
+src_configure() {
+    ./configure --transparency || die
+}

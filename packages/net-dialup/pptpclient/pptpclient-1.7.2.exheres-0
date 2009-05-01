@@ -1,0 +1,36 @@
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require multilib
+
+DESCRIPTION="Linux client for PPTP"
+HOMEPAGE="http://pptpclient.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/${PN}/pptp-${PV}.tar.gz"
+
+SLOT="0"
+LICENCES="GPL-2"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+build+run:
+	>=net-dialup/ppp-2.4.2
+"
+
+WORK="${WORKBASE}/pptp-${PV}"
+
+src_test() {
+    :
+}
+
+src_install() {
+
+	insinto /etc/ppp
+	insopts -m0644
+	doins options.pptp
+	
+	doman pptp.8
+
+	dosbin pptp
+	dodoc AUTHORS ChangeLog DEVELOPERS NEWS README TODO USING
+	dodoc Documentation/*
+}
