@@ -10,60 +10,32 @@ DOWNLOADS="ftp://dl.cihar.com/gammu/releases/${PNV}.tar.bz2"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-IUSE="debug bluetooth irda mysql postgres nls"
+MYOPTIONS="debug bluetooth mysql nls pgsql"
 
-RDEPEND="bluetooth? ( || ( net-wireless/bluez net-wireless/bluez-libs ) )
-	mysql? ( virtual/mysql )
-	postgres? ( virtual/postgresql-server )
-	dev-util/dialog"
-DEPEND="${RDEPEND}
-	irda? ( virtual/os-headers )
+## irda options locked
+
+DEPENDENCIES="
+	build+run:
+	bluetooth? ( || ( net-wireless/bluez ) )
+	mysql? ( dev-db/mysql )
+	pgsql? ( dev-db/postgresql )
+	sys-apps/dialog
+	build:
 	nls? ( sys-devel/gettext )
-	dev-util/cmake"
-
-# sys-devel/gettext is needed for creating .mo files
-# Supported languages and translated documentation
-# Be sure all languages are prefixed with a single space!
-MY_AVAILABLE_LINGUAS=" cs de es id it pl ru"
-IUSE="${IUSE} ${MY_AVAILABLE_LINGUAS// / linguas_}"
+	sys-devel/cmake"
 
 src_unpack() {
-	unpack ${A}
-
-	epatch "${FILESDIR}"/${P}-assert.patch
-	epatch "${FILESDIR}"/${P}-skip-locktest.patch
-
-	pushd "${S}"/locale || die "locale directory not found"
-	local lang support_linguas=no
-	for lang in ${MY_AVAILABLE_LINGUAS} ; do
-		if use linguas_${lang} ; then
-			support_linguas=yes
-			break
-		fi
-	done
-	# install all languages when all selected LINGUAS aren't supported
-	if [ "${support_linguas}" = "yes" ]; then
-		for lang in ${MY_AVAILABLE_LINGUAS} ; do
-			if ! use linguas_${lang} ; then
-				sed -i -e "/^[[:space:]]*${lang}[[:space:]]*$/d" CMakeLists.txt
-			fi
-		done
-	fi
-	popd
+	epatch "${FILES}"/${P}-assert.patch
+	epatch "${FILES}"/${P}-skip-locktest.patch
 }
 
 src_compile() {
-	# debug flag is used inside cmake-utils.eclass
+
 	local mycmakeargs="$(cmake-utils_use_with bluetooth Bluez) \
-		$(cmake-utils_use_with irda IrDA) \
 		$(cmake-utils_use_with mysql MySQL) \
 		$(cmake-utils_use_with postgres Postgres) \
-		-DBUILD_SHARED_LIBS=ON"
+	-DBUILD_SHARED_LIBS=ON"
 	cmake-utils_src_compile
-}
-
-src_test() {
-	LD_LIBRARY_PATH="${WORKDIR}"/${PN}_build/common cmake-utils_src_test
 }
 
 pkg_preinst() {

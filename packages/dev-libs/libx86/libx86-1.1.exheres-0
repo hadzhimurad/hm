@@ -11,12 +11,13 @@ LICENCES="BSD"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
+MYOPTIONS="platform:amd64"
 
-src_compile() {
-	local ARGS
+src_configure() {
+	local myconf=()
 
-	if platform:amd64? ; then
-		ARGS="BACKEND=x86emu"
+	if option platform:amd64 ; then
+		myconf+=( "BACKEND=x86emu" )
 	fi
-	emake ${ARGS}
+
 }
