@@ -40,10 +40,3 @@ src_install() {
 	newinitd "${FILES}"/pdnsd.init pdnsd
 
 }
-
-pkg_postinst() {
-	elog
-	elog "Add pdnsd to your default runlevel - rc-update add pdnsd default"
-	elog ""
-	elog "Sample config file in /etc/pdnsd/pdnsd.conf.sample"
-}
