@@ -12,18 +12,18 @@ MYOPTIONS="gimp gnome nls"
 
 DEPENDENCIES="
 	build+run:
-	>=x11-libs/gtk+-2.0
-	>media-libs/libgphoto2-2.4
-	>=media-libs/libexif-0.3.2
-	media-libs/libexif-gtk
-	gimp? ( >=media-gfx/gimp-2 )
-	gnome? (
+	    >=x11-libs/gtk+-2.0
+	    >media-libs/libgphoto2-2.4
+	    >=media-libs/libexif-0.3.2
+	    media-libs/libexif-gtk
+	    gimp? ( >=media-gfx/gimp-2 )
+	    gnome? (
 		>=gnome-base/libbonobo-2
 		>=gnome-base/libgnomeui-2 )
 	build:
-	>=dev-util/intltool-0.40
-	dev-util/pkg-config
-	nls? ( >=sys-devel/gettext-0.14.1 )"
+	    >=dev-util/intltool-0.40
+	    dev-util/pkg-config
+	    nls? ( >=sys-devel/gettext-0.14.1 )"
 
 DOCS="AUTHORS CHANGES NEWS README TODO"
 

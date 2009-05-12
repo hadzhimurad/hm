@@ -11,12 +11,9 @@ PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
 build+run:
-	>=net-dialup/ppp-2.4.2
-"
+	>=net-dialup/ppp-2.4.2"
 
 WORK="${WORKBASE}/pptp-${PV}"
-
-DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS USING TODO README NEWS DEVELOPERS Documentation/PORTING Documentation/DESIGN.PPTP Documentation/DESIGN.CALLMGR ChangeLog )
 
 src_test() {
     :
@@ -26,6 +23,10 @@ src_install() {
 	insinto /etc/ppp
 	insopts -m0644
 	doins options.pptp
-	doman pptp.8
+
 	dosbin pptp
+	doman pptp.8
+
+	dodoc AUTHORS ChangeLog DEVELOPERS NEWS README TODO USING
+	dodoc Documentation/PORTING Documentation/DESIGN.PPTP Documentation/DESIGN.CALLMGR
 }

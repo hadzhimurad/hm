@@ -10,7 +10,7 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="bluetooth mysql nls pgsql python usb"
 
-CMAKE_SRC_CONFIGURE_OPTION_WITHS=( 'bluetooth WITH_BLUETOOTH' 'python WITH_PYTHON' 'usb WITH_USB' )
+CMAKE_SRC_CONFIGURE_OPTION_WITHS=( 'bluetooth BLUETOOTH' 'python PYTHON' 'usb USB' )
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
 	-DBUILD_SHARED_LIBS=ON
@@ -19,17 +19,16 @@ CMAKE_SRC_CONFIGURE_PARAMS=(
 
 DEPENDENCIES="
 	build+run:
-	bluetooth? ( net-wireless/bluez )
-	usb? ( dev-libs/libusb:1 )
-	mysql? ( dev-db/mysql )
-	pgsql? ( dev-db/postgresql )
-	python? ( dev-lang/python )
-	sys-apps/dialog
+	    bluetooth? ( net-wireless/bluez )
+	    usb? ( dev-libs/libusb:1 )
+	    mysql? ( dev-db/mysql )
+	    pgsql? ( dev-db/postgresql )
+	    python? ( dev-lang/python )
+	    sys-apps/dialog
 	build:
-	nls? ( sys-devel/gettext )
-	sys-devel/cmake"
+	    nls? ( sys-devel/gettext )
+	    sys-devel/cmake"
 
 pkg_preinst() {
-	# use standard -l options
 	sed -i -e 's:-l[a-z0-9A-Z_/-]*/lib\([a-z]*\)\.so:-l\1:g' "${IMAGE}"/usr/*/pkgconfig/gammu.pc || die "sed failed"
 }

@@ -12,12 +12,11 @@ MYOPTIONS="crypt hal"
 
 DEPENDENCIES="
 	build+run:
-	hal? ( >=sys-apps/dbus-0.33 >=sys-apps/hal-0.5.2 )
-	crypt? ( >=sys-fs/cryptsetup-1.0.5 )
-	group/plugdev
-
+	    hal? ( >=sys-apps/dbus-0.33 >=sys-apps/hal-0.5.2 )
+	    crypt? ( >=sys-fs/cryptsetup-1.0.5 )
+	    group/plugdev
 	build:
-	>=dev-util/intltool-0.40"
+	    >=dev-util/intltool-0.40"
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-ext4-support.patch )
 
@@ -42,9 +41,6 @@ src_install () {
 }
 
 pkg_postinst() {
-	#Adding plugdev group
-	enewgroup plugdev
-
 	elog
 	elog "This package has been installed setuid and setgid."
 
@@ -54,4 +50,3 @@ pkg_postinst() {
 	elog
 	elog "Please add your user to the plugdev group to be able to mount USB drives"
 }
-

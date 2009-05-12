@@ -1,5 +1,5 @@
 
-require eutils
+###require eutils
 
 SUMMARY="Direct connect client, looks and works like famous DC++"
 HOMEPAGE="https://launchpad.net/linuxdcpp"
