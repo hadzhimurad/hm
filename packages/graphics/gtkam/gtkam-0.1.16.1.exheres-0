@@ -1,0 +1,33 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require eutils gnome-2
+
+SUMMARY="A frontend for gPhoto 2"
+HOMEPAGE="http://gphoto.org/proj/gtkam"
+DOWNLOADS="mirror://sourceforge/gphoto/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gimp gnome nls"
+
+DEPENDENCIES="
+	build+run:
+	>=x11-libs/gtk+-2.0
+	>media-libs/libgphoto2-2.4
+	>=media-libs/libexif-0.3.2
+	media-libs/libexif-gtk
+	gimp? ( >=media-gfx/gimp-2 )
+	gnome? (
+		>=gnome-base/libbonobo-2
+		>=gnome-base/libgnomeui-2 )
+	build:
+	>=dev-util/intltool-0.40
+	dev-util/pkg-config
+	nls? ( >=sys-devel/gettext-0.14.1 )"
+
+DOCS="AUTHORS CHANGES NEWS README TODO"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-scrollkeeper --with-rpmbuild=/bin/false )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gimp gnome 'gnome bonobo' )

@@ -1,0 +1,37 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake
+
+SUMMARY="a fork of the gnokii project, a tool to handle your cellular phone"
+HOMEPAGE="http://www.gammu.org"
+DOWNLOADS="ftp://dl.cihar.com/gammu/releases/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="bluetooth mysql nls pgsql python usb"
+
+CMAKE_SRC_CONFIGURE_OPTIONS=( 'bluetooth WITH_BLUETOOTH' 'python WITH_PYTHON' 'usb WITH_USB' )
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+	-DBUILD_SHARED_LIBS=ON
+	-DINSTALL_DOC_DIR=share/doc/${PNV}
+)
+
+DEPENDENCIES="
+	build+run:
+	bluetooth? ( net-wireless/bluez )
+	usb? ( dev-libs/libusb:1 )
+	mysql? ( dev-db/mysql )
+	pgsql? ( dev-db/postgresql )
+	python? ( dev-lang/python )
+	sys-apps/dialog
+	build:
+	nls? ( sys-devel/gettext )
+	sys-devel/cmake"
+
+pkg_preinst() {
+	# use standard -l options
+	sed -i -e 's:-l[a-z0-9A-Z_/-]*/lib\([a-z]*\)\.so:-l\1:g' "${IMAGE}"/usr/*/pkgconfig/gammu.pc || die "sed failed"
+}
