@@ -1,7 +1,7 @@
 
 require multilib
 
-DESCRIPTION="Linux client for PPTP"
+SUMMARY="Linux client for PPTP"
 HOMEPAGE="http://pptpclient.sourceforge.net/"
 DOWNLOADS="mirror://sourceforge/${PN}/pptp-${PV}.tar.gz"
 
@@ -16,19 +16,16 @@ build+run:
 
 WORK="${WORKBASE}/pptp-${PV}"
 
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS USING TODO README NEWS DEVELOPERS Documentation/PORTING Documentation/DESIGN.PPTP Documentation/DESIGN.CALLMGR ChangeLog )
+
 src_test() {
     :
 }
 
 src_install() {
-
 	insinto /etc/ppp
 	insopts -m0644
 	doins options.pptp
-	
 	doman pptp.8
-
 	dosbin pptp
-	dodoc AUTHORS ChangeLog DEVELOPERS NEWS README TODO USING
-	dodoc Documentation/*
 }
