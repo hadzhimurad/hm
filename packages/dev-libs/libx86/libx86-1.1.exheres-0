@@ -1,7 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
+#
 
-require eutils multilib toolchain-funcs
+require eutils
 
 DESCRIPTION="A hardware-independent library for executing real-mode x86 code"
 HOMEPAGE="http://www.codon.org.uk/~mjg59/libx86"
