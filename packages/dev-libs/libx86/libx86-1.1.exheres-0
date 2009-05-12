@@ -13,11 +13,15 @@ PLATFORMS="~amd64 ~x86"
 
 MYOPTIONS="platform:amd64"
 
-src_configure() {
-	local myconf=()
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-0.99-ifmask.patch" )
 
+src_compile() {
 	if option platform:amd64 ; then
-		myconf+=( "BACKEND=x86emu" )
+		emake BACKEND="x86emu"
 	fi
+	emake
+}
 
+src_install() {
+	emake LIBDIR="/usr/$(get_libdir)" DESTDIR="${IMAGE}" install || die
 }

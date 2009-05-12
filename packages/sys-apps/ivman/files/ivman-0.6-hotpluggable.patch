@@ -1,11 +1,5 @@
-http://bugs.gentoo.org/show_bug.cgi?id=169593
-  	 iulica@box.co.uk
-This patch tests also for a storage if it is hotpluggable and mounts it
-automatically. A reason of creating the patch can be found here:
-http://lists.freedesktop.org/archives/hal/2005-October/003441.html
-
---- src/IvmConfig/IvmConfigCommon.c.old	2007-03-05 15:28:49.000000000 +0100
-+++ src/IvmConfig/IvmConfigCommon.c	2007-03-05 15:34:36.000000000 +0100
+--- ivman-0.6.14-orig/src/IvmConfig/IvmConfigCommon.c	2007-03-05 15:28:49.000000000 +0100
++++ ivman-0.6.14/src/IvmConfig/IvmConfigCommon.c	2007-03-05 15:34:36.000000000 +0100
 @@ -146,7 +146,9 @@
                 volume.policy.should_mount does not exist
                 AND { storage.policy.should_mount == TRUE on block.storage_device

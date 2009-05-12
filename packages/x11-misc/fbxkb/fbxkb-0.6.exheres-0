@@ -30,5 +30,5 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --transparency || die
+	./configure --transparency || die
 }

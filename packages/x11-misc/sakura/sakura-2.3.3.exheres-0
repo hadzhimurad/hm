@@ -15,5 +15,4 @@ DEPENDENCIES="
 	build+run:
 	>=dev-libs/vte-0.16.1:0
 	>=dev-libs/glib-2.14:2
-	>=x11-libs/gtk+-2.10:2
-"
+	>=x11-libs/gtk+-2.10:2"

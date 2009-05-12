@@ -5,32 +5,28 @@ require eutils
 
 SUMMARY="Policy based mounter that gives the ability to mount removable devices as a user"
 HOMEPAGE="http://pmount.alioth.debian.org/"
-DOWNLOADS="http://alioth.debian.org/frs/download.php/2867/${P}.tar.gz"
+DOWNLOADS="http://alioth.debian.org/frs/download.php/2867/${PNV}.tar.gz"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="crypt hal"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="crypt hal"
 
 DEPENDENCIES="
 	build+run:
 	hal? ( >=sys-apps/dbus-0.33 >=sys-apps/hal-0.5.2 )
 	crypt? ( >=sys-fs/cryptsetup-1.0.5 )
+	group/plugdev
+
 	build:
 	>=dev-util/intltool-0.40"
 
-PATCHES=("${FILES}/${P}-ext4-support.patch")
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-ext4-support.patch )
 
-pkg_setup() {
-	enewgroup plugdev
-}
-
-src_configure() {
-	econf $(use_enable hal)
-}
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( hal )
 
 src_install () {
-	# Must be run SETUID+SETGID, bug #250106
+
 	exeinto /usr/bin
 	exeopts -m 6710 -g plugdev
 	doexe src/pmount src/pumount || die "doexe failed"
@@ -38,7 +34,7 @@ src_install () {
 	dodoc AUTHORS ChangeLog TODO || die "dodoc failed"
 	doman man/pmount.1 man/pumount.1 || die "doman failed"
 
-	if use hal; then
+	if option hal; then
 		doexe src/pmount-hal || die "doexe failed"
 		doman man/pmount-hal.1  || die "doman failed"
 	fi
@@ -48,6 +44,9 @@ src_install () {
 }
 
 pkg_postinst() {
+	#Adding plugdev group
+	enewgroup plugdev
+
 	elog
 	elog "This package has been installed setuid and setgid."
 
@@ -57,3 +56,4 @@ pkg_postinst() {
 	elog
 	elog "Please add your user to the plugdev group to be able to mount USB drives"
 }
+
