@@ -13,6 +13,17 @@ DEPENDENCIES="
 build+run:
 	>=net-dialup/ppp-2.4.2"
 
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS
+		ChangeLog
+		DEVELOPERS
+		NEWS
+		README
+		TODO
+		USING
+		Documentation/PORTING
+		Documentation/DESIGN.PPTP
+		Documentation/DESIGN.CALLMGR )
+
 WORK="${WORKBASE}/pptp-${PV}"
 
 src_test() {
@@ -20,13 +31,12 @@ src_test() {
 }
 
 src_install() {
+	default
+
 	insinto /etc/ppp
 	insopts -m0644
 	doins options.pptp
 
 	dosbin pptp
 	doman pptp.8
-
-	dodoc AUTHORS ChangeLog DEVELOPERS NEWS README TODO USING
-	dodoc Documentation/PORTING Documentation/DESIGN.PPTP Documentation/DESIGN.CALLMGR
 }
