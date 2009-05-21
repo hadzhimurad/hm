@@ -1,5 +1,5 @@
 
-require eutils gnome-2
+require gnome-2
 
 SUMMARY="A frontend for gPhoto 2"
 HOMEPAGE="http://gphoto.org/proj/gtkam"

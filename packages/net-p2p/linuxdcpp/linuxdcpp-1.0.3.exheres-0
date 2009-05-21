@@ -1,6 +1,4 @@
 
-###require eutils
-
 SUMMARY="Direct connect client, looks and works like famous DC++"
 HOMEPAGE="https://launchpad.net/linuxdcpp"
 DOWNLOADS="http://launchpad.net/linuxdcpp/1.0/${PV}/+download/${PNV}.tar.bz2"

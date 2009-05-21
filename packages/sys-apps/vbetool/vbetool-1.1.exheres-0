@@ -1,6 +1,4 @@
 
-require eutils flag-o-matic
-
 SUMMARY="Run real-mode video BIOS code to alter hardware state (i.e. reinitialize video card)"
 HOMEPAGE="http://www.codon.org.uk/~mjg59/vbetool/"
 
