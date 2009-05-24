@@ -1,6 +1,4 @@
 
-require eutils
-
 SUMMARY="X11 keyboard indicator and switcher"
 HOMEPAGE="http://freshmeat.net/projects/fbxkb/"
 DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tgz"

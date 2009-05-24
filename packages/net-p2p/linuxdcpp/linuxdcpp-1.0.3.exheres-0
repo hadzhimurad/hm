@@ -17,29 +17,22 @@ DEPENDENCIES="
 	>=sys-devel/scons-0.96
 	dev-util/pkg-config"
 
-src_compile() {
-	local myconf=""
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( Readme.txt Changelog.txt Credits.txt )
 
-	scons ${myconf} ${MAKEOPTS} CXXFLAGS="${CXXFLAGS}" PREFIX=/usr
+src_compile() {
+	scons ${MAKEOPTS} CXXFLAGS="${CXXFLAGS}" PREFIX=/usr
 }
 
 src_install() {
 	insinto /usr/share/${PN}
 	doins -r ${PN} pixmaps glade
 
-	dodoc Readme.txt Changelog.txt Credits.txt
+	insinto /usr/share/application
+	doins ${FILES}/${PN}.desktop
 
 	fperms +x /usr/share/${PN}/${PN}
-	
+
 	dodir usr/bin
 	dosym /usr/share/${PN}/${PN} /usr/bin/${PN}
 	doicon pixmaps/${PN}.png
-
-	make_desktop_entry ${PN} "${PN}" ${PN}
-}
-
-pkg_postinst() {
-	elog
-	elog "After adding first directory to shares you might need to restart linuxdcpp."
-	elog
 }

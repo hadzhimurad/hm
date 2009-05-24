@@ -1,6 +1,4 @@
 
-require eutils
-
 SUMMARY="Policy based mounter that gives the ability to mount removable devices as a user"
 HOMEPAGE="http://pmount.alioth.debian.org/"
 DOWNLOADS="http://alioth.debian.org/frs/download.php/2867/${PNV}.tar.gz"
@@ -19,16 +17,15 @@ DEPENDENCIES="
 	    >=dev-util/intltool-0.40"
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-ext4-support.patch )
-
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( hal )
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS ChangeLog TODO )
 
 src_install () {
-
+	default
 	exeinto /usr/bin
 	exeopts -m 6710 -g plugdev
 	doexe src/pmount src/pumount || die "doexe failed"
 
-	dodoc AUTHORS ChangeLog TODO || die "dodoc failed"
 	doman man/pmount.1 man/pumount.1 || die "doman failed"
 
 	if option hal; then

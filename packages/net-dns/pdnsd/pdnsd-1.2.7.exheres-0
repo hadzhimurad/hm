@@ -1,6 +1,4 @@
 
-require eutils
-
 SUMMARY="Proxy DNS server with permanent caching"
 HOMEPAGE="http://www.phys.uu.nl/~rombouts/pdnsd.html"
 DOWNLOADS="http://www.phys.uu.nl/~rombouts/pdnsd/releases/${PNV}-par.tar.gz"
@@ -8,35 +6,30 @@ DOWNLOADS="http://www.phys.uu.nl/~rombouts/pdnsd/releases/${PNV}-par.tar.gz"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTION="ipv6 underscores"
+MYOPTIONS="ipv6 underscores"
 
 DEPENDENCIES="
     build+run:
         group/pdnsd
-        user/pdnsd
-"
+        user/pdnsd"
 
-src_configure() {
-	econf \
-		--with-random-device=/dev/urandom \
-		--sysconfdir=/etc/pdnsd \
-		--with-cachedir=/var/cache/pdnsd \
-		--with-default-id=pdnsd \
-		$(myoption enable ipv6) \
-		$(myoption with underscores)
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-random-device=/dev/urandom'
+				'--sysconfdir=/etc/pdnsd'
+				'--with-cachedir=/var/cache/pdnsd'
+				'--with-default-id=pdnsd' )
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( underscores )
+
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO
+    doc/txt/faq.txt
+    doc/txt/intro.txt
+    doc/txt/manual.txt
+    doc/pdnsd.conf
+)
 
 src_install() {
 	default
-
-	dodoc AUTHORS ChangeLog* NEWS README THANKS TODO README.par
-	docinto contrib ; dodoc contrib/{README,dhcp2pdnsd,pdnsd_dhcp.pl}
-	docinto txt ; dodoc doc/txt/*
-	newdoc doc/pdnsd.conf pdnsd.conf.sample
-
 	fowners pdnsd:pdnsd /var/cache/pdnsd
-
-	# Installing init file as well as confd file
 	newinitd "${FILES}"/pdnsd.init pdnsd
-
 }

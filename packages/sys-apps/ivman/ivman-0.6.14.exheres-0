@@ -1,5 +1,5 @@
 
-require eutils
+####require eutils
 
 SUMMARY="Daemon to mount/unmount devices, based on info from HAL"
 HOMEPAGE="http://ivman.sf.net"
@@ -9,7 +9,7 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug"
 SLOT="0"
 
-RDEPENDENCIES="
+DEPENDENCIES="
 	build+run:
 	    >=dev-libs/glib-2.6
 	    dev-libs/libxml2
@@ -28,20 +28,5 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "debug" )
 src_install() {
 	default
 	newinitd "${FILES}"/ivman.init ivman
-	sed -i -e "s:set -x::" ${D}/usr/bin/ivman-launch
-}
-
-pkg_postinst() {
-	einfo "Note that, as of version 0.6.0, the IvmConfigMappings.xml configuration"
-	einfo "file is no longer required to correctly mount fstab entries which"
-	einfo "use symbolic links.  You may safely remove this file if desired."
-	einfo "However, HAL typically does not correctly deal with fstab"
-	einfo "entries of this nature, therefore it is strongly recommanded that"
-	einfo "you have real device names (i.e. not symlinks) in /etc/fstab."
-	echo
-
-	einfo "By default, Ivman will mount any removable disks as they are"
-	einfo "attached.  If you want Ivman to do more, such as hibernating"
-	einfo "your laptop when the lid is closed or when the battery is low,"
-	einfo "look at the configuration files in /etc/ivman/ ."
+	sed -i -e "s:set -x::" ${IMAGE}/usr/bin/ivman-launch
 }
