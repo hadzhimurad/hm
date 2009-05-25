@@ -1,6 +1,4 @@
 
-####require eutils
-
 SUMMARY="Daemon to mount/unmount devices, based on info from HAL"
 HOMEPAGE="http://ivman.sf.net"
 DOWNLOADS="mirror://sourceforge/ivman/${PNV}.tar.bz2"

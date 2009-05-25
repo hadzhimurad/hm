@@ -1,6 +1,4 @@
 
-require multilib
-
 SUMMARY="Linux client for PPTP"
 HOMEPAGE="http://pptpclient.sourceforge.net/"
 DOWNLOADS="mirror://sourceforge/${PN}/pptp-${PV}.tar.gz"
@@ -13,13 +11,7 @@ DEPENDENCIES="
 build+run:
 	>=net-dialup/ppp-2.4.2"
 
-DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS
-		ChangeLog
-		DEVELOPERS
-		NEWS
-		README
-		TODO
-		USING
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS ChangeLog DEVELOPERS NEWS README TODO USING
 		Documentation/PORTING
 		Documentation/DESIGN.PPTP
 		Documentation/DESIGN.CALLMGR )
