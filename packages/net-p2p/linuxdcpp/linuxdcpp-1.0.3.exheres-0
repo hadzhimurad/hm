@@ -8,13 +8,13 @@ PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
 	build+run:
-	>=gnome-platform/libglade-2.4
-	>=x11-libs/gtk+-2.6:2
+	gnome-platform/libglade
+	x11-libs/gtk+
 	app-arch/bzip2
 	dev-libs/openssl
 	build:
 	media-libs/fontconfig
-	>=sys-devel/scons-0.96
+	sys-devel/scons
 	dev-util/pkg-config"
 
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( Readme.txt Changelog.txt Credits.txt )

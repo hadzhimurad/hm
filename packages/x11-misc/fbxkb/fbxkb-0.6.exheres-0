@@ -10,7 +10,7 @@ PLATFORMS="~amd64 ~x86"
 DEPENDENCIES="
 	build+run:
 	    x11-libs/libX11
-	    >=x11-libs/gtk+-2.6
+	    x11-libs/gtk+
 	    x11-libs/pixman
 	    dev-libs/atk
 	    media-libs/libpng

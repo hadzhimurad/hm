@@ -8,8 +8,8 @@ LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
-build+run:
-	>=net-dialup/ppp-2.4.2"
+	build+run:
+	    net-dialup/ppp[>=2.4.2]"
 
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS ChangeLog DEVELOPERS NEWS README TODO USING
 		Documentation/PORTING

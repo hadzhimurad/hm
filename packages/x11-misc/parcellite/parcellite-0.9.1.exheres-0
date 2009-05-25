@@ -10,8 +10,8 @@ MYOPTIONS="nls"
 
 DEPENDENCIES="
 	run+build:
-	    >=x11-libs/gtk+-2.10
-	    >=dev-libs/glib-2.14
+	    x11-libs/gtk+[>=2.10]
+	    dev-libs/glib[>=2.14]
 	build:
 	    dev-util/pkg-config
 	    nls? ( sys-devel/gettext
