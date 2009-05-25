@@ -1,0 +1,24 @@
+
+SPEC_VER="26204-700"
+
+SUMMARY="Wrapper library for 3GPP Adaptive Multi-Rate Wideband Floating-point Speech Codec"
+HOMEPAGE="http://www.penguin.cz/~utx/amr"
+DOWNLOADS="http://ftp.penguin.cz/pub/users/utx/amr/${PNV}.tar.bz2
+	http://www.3gpp.org/ftp/Specs/archive/26_series/26.204/${SPEC_VER}.zip"
+
+RESTRICT="mirror"
+
+LICENCES="LGPL-2 as-is"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+	    build:
+	    app-arch/unzip"
+
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS ChangeLog NEWS README TODO )
+
+src_unpack() {
+        unpack ${PNV}.tar.bz2
+        cp ${FETCHEDDIR}/${SPEC_VER}.zip ${WORK}
+}
