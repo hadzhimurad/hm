@@ -27,7 +27,7 @@ src_install() {
 	insinto /usr/share/${PN}
 	doins -r ${PN} pixmaps glade
 
-	insinto /usr/share/application
+	insinto /usr/share/applications
 	doins ${FILES}/${PN}.desktop
 
 	fperms +x /usr/share/${PN}/${PN}
