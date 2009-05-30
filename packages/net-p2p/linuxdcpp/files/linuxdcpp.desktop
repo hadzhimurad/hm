@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Linux DC++
+GenericName=P2P DC++ client
+Comment=Direct Connect client
+Icon=/usr/share/linuxdcpp/pixmaps/linuxdcpp-icon.png
+Exec=linuxdcpp
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;P2P;GTK;

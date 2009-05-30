@@ -21,7 +21,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-random-device=/dev/urandom'
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( underscores )
 
-DEFAULT_SRC_INSTALL_EXTRA_DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
     doc/txt/faq.txt
     doc/txt/intro.txt
     doc/txt/manual.txt

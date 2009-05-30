@@ -1,0 +1,36 @@
+# Copyright
+#
+
+SUMMARY="WiFi Radar is a Python/PyGTK2 utility for managing WiFi profiles."
+HOMEPAGE="http://wifi-radar.systemimager.org/"
+DOWNLOADS="http://wifi-radar.systemimager.org/pub/${PNV}.tar.bz2"
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+	build:
+	gnome-bindings/pygtk[>=2.6]
+	net-wireless/wireless_tools[>=27]
+	net-misc/dhcpcd"
+
+src_install() {
+	default
+	sed "s:/etc/wpa_supplicant.conf:/etc/wpa_supplicant/wpa_supplicant.conf:" /usr/sbin/wifi-radar
+	dobin wifi-radar.sh
+}
+
+pkg_postinst() {
+
+	einfo "Remember to edit configuration file /etc/wifi-radar.conf to suit your needs..."
+	echo
+	einfo "To use wifi-radar with a normal user (with sudo) add:"
+	einfo "%users   ALL = /usr/sbin/wifi-radar"
+	einfo "in your /etc/sudoers. Also, find the line saying:"
+	einfo "Defaults      env_reset"
+	einfo "and modify it as follows:"
+	einfo "Defaults      env_keep=DISPLAY"
+	echo
+	einfo "Then launch wifi-radar.sh"
+	echo
+}
