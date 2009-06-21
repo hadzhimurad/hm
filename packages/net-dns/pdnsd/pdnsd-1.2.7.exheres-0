@@ -1,3 +1,5 @@
+# Copyright 2009 Hadzhimurad Ustarkhanov (ustarkhanov@gmail.com)
+# Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Proxy DNS server with permanent caching"
 HOMEPAGE="http://www.phys.uu.nl/~rombouts/pdnsd.html"
@@ -14,22 +16,21 @@ DEPENDENCIES="
         user/pdnsd"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-random-device=/dev/urandom'
-				'--sysconfdir=/etc/pdnsd'
-				'--with-cachedir=/var/cache/pdnsd'
-				'--with-default-id=pdnsd' )
+                               '--sysconfdir=/etc/pdnsd'
+                               '--with-cachedir=/var/cache/pdnsd'
+                               '--with-default-id=pdnsd' )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( underscores )
 
-DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
-    doc/txt/faq.txt
-    doc/txt/intro.txt
-    doc/txt/manual.txt
-    doc/pdnsd.conf
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( doc/txt/faq.txt
+                                 doc/txt/intro.txt
+                                 doc/txt/manual.txt
+                                 doc/pdnsd.conf
 )
 
 src_install() {
-	default
-	fowners pdnsd:pdnsd /var/cache/pdnsd
-	newinitd "${FILES}"/pdnsd.init pdnsd
+    default
+    fowners pdnsd:pdnsd /var/cache/pdnsd
+    newinitd "${FILES}"/pdnsd.init pdnsd
 }

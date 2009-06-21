@@ -1,3 +1,5 @@
+# Copyright 2009 Hadzhimurad Ustarkhanov (ustarkhanov@gmail.com)
+# Distributed under the terms of the GNU General Public License v2
 
 require kde4
 
@@ -10,7 +12,8 @@ LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
-	build+run:
-	kde/kdebase-workspace[>=4.2]
-	sys-apps/net-tools
-	net-wireless/wireless_tools"
+    build+run:
+        kde/kdebase-workspace[>=4.2]
+        sys-apps/net-tools
+        net-wireless/wireless_tools
+"

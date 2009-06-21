@@ -1,3 +1,5 @@
+# Copyright 2009 Hadzhimurad Ustarkhanov (ustarkhanov@gmail.com)
+# Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Direct connect client, looks and works like famous DC++"
 HOMEPAGE="https://launchpad.net/linuxdcpp"
@@ -7,15 +9,15 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
-	build+run:
-	gnome-platform/libglade
-	x11-libs/gtk+
-	app-arch/bzip2
-	dev-libs/openssl
-	build:
-	media-libs/fontconfig
-	sys-devel/scons
-	dev-util/pkg-config"
+    build+run:
+        x11-libs/gtk+[>=2.4]
+        gnome-platform/libglade[>=2.4]
+        app-arch/bzip2
+        dev-libs/openssl
+    build:
+        media-libs/fontconfig
+        sys-devel/scons
+        dev-util/pkg-config"
 
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( Readme.txt Changelog.txt Credits.txt )
 
@@ -24,15 +26,15 @@ src_compile() {
 }
 
 src_install() {
-	insinto /usr/share/${PN}
-	doins -r ${PN} pixmaps glade
+    insinto /usr/share/${PN}
+    doins -r ${PN} pixmaps glade
 
-	insinto /usr/share/applications
-	doins ${FILES}/${PN}.desktop
+    insinto /usr/share/applications
+    doins ${FILES}/${PN}.desktop
 
-	fperms +x /usr/share/${PN}/${PN}
+    fperms +x /usr/share/${PN}/${PN}
 
-	dodir usr/bin
-	dosym /usr/share/${PN}/${PN} /usr/bin/${PN}
-	doicon pixmaps/${PN}.png
+    dodir usr/bin
+    dosym /usr/share/${PN}/${PN} /usr/bin/${PN}
+    doicon pixmaps/${PN}.png
 }

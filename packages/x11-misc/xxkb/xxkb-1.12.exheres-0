@@ -1,3 +1,5 @@
+# Copyright 2009 Hadzhimurad Ustarkhanov (ustarkhanov@gmail.com)
+# Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="eXtended XKB - assign different keymaps to different windows"
 HOMEPAGE="http://sourceforge.net/projects/xxkb/"
@@ -11,23 +13,23 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="svg"
 
 DEPENDENCIES="
-	build+run:
-	    x11-libs/libX11
-	    x11-libs/libXt
-	    x11-libs/libXpm
-	    svg? ( gnome-desktop/librsvg
-		    dev-libs/glib:2
-		    x11-libs/gtk+:2 )
-	build:
-	    svg? ( dev-util/pkg-config )"
+    build+run:
+        x11-libs/libX11
+        x11-libs/libXt
+        x11-libs/libXpm
+        svg? ( gnome-desktop/librsvg
+               dev-libs/glib:2
+               x11-libs/gtk+:2 )
+    build:
+        svg? ( dev-util/pkg-config )"
 
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( CHANGES.koi8 )
 
 src_compile() {
-	default
-	if option svg;
-	    then emake DESTDIR="${IMAGE}" WITH_SVG_SUPPORT=1
-	else
-	emake DESTDIR="${IMAGE}" || die "emake failed."
-	fi
+    default
+    if option svg;
+        then emake DESTDIR="${IMAGE}" WITH_SVG_SUPPORT=1
+    else
+        emake DESTDIR="${IMAGE}" || die "emake failed."
+    fi
 }

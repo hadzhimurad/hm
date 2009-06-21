@@ -1,3 +1,5 @@
+# Copyright 2009 Hadzhimurad Ustarkhanov (ustarkhanov@gmail.com)
+# Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Linux client for PPTP"
 HOMEPAGE="http://pptpclient.sourceforge.net/"
@@ -8,13 +10,12 @@ LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
-	build+run:
-	    net-dialup/ppp[>=2.4.2]"
+    build+run:
+        net-dialup/ppp[>=2.4.2]"
 
-DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
-		Documentation/PORTING
-		Documentation/DESIGN.PPTP
-		Documentation/DESIGN.CALLMGR )
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( Documentation/PORTING
+                                 Documentation/DESIGN.PPTP
+                                 Documentation/DESIGN.CALLMGR )
 
 WORK="${WORKBASE}/pptp-${PV}"
 
@@ -23,12 +24,12 @@ src_test() {
 }
 
 src_install() {
-	default
+    default
 
-	insinto /etc/ppp
-	insopts -m0644
-	doins options.pptp
+    insinto /etc/ppp
+    insopts -m0644
+    doins options.pptp
 
-	dosbin pptp
-	doman pptp.8
+    dosbin pptp
+    doman pptp.8
 }
