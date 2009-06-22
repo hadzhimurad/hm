@@ -22,7 +22,7 @@ DEPENDENCIES="
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( Readme.txt Changelog.txt Credits.txt )
 
 src_compile() {
-	scons ${MAKEOPTS} CXXFLAGS="${CXXFLAGS}" PREFIX=/usr
+    scons ${MAKEOPTS} CXXFLAGS="${CXXFLAGS}" PREFIX=/usr
 }
 
 src_install() {

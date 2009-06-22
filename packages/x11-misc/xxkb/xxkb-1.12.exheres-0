@@ -17,9 +17,7 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libXt
         x11-libs/libXpm
-        svg? ( gnome-desktop/librsvg
-               dev-libs/glib:2
-               x11-libs/gtk+:2 )
+        svg? ( gnome-desktop/librsvg )
     build:
         svg? ( dev-util/pkg-config )"
 
