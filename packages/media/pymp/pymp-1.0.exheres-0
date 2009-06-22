@@ -1,0 +1,25 @@
+# Copyright 2009 Hadzhimurad Ustarkhanov (ustarkhanov@gmail.com)
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Pymp is a lean, flexible frontend to MPlayer written in Python."
+DESCRIPTION="Pymp supports simple playlists, web streams, and anything else that MPlayer does.
+Pymp aims to blend in with your desktop environment, not stand out as many skinned players do."
+
+HOMEPAGE="http://jdolan.dyndns.org/trac/wiki/Pymp"
+DOWNLOADS="http://jdolan.dyndns.org/jaydolan/files/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        media/mplayer
+        gnome-bindings/pygtk
+    build:
+        sys-apps/sed"
+
+src_prepare() {
+    sed -e 's:PREFIX=/usr/local:PREFIX=/usr:' \
+        -i Makefile || die "sedding Makefile failed"
+}

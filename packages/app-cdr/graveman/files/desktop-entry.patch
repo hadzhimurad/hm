@@ -1,0 +1,10 @@
+--- graveman-0.3.12-5/desktop/graveman.desktop.in.orig
++++ graveman-0.3.12-5/desktop/graveman.desktop.in
+@@ -48,5 +47,5 @@
+ Exec=graveman
+ Terminal=false
+ Type=Application
+-Icon=graveman48.png
+-Categories=Application;Utility;
++Icon=graveman48
++Categories=Utility;

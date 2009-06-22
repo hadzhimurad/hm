@@ -1,0 +1,24 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="light-weight X11 desktop panel"
+HOMEPAGE="http://fbpanel.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tgz"
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+	x11-libs/gtk+:2
+    build:
+	dev-util/pkg-config"
+
+src_configure() {
+    ./configure || die "configure failed"
+}
+
+src_install () {
+        emake PREFIX="${IMAGE}/usr" install || die "emake install failed"
+}

@@ -1,0 +1,25 @@
+# Copyright 2009 Hadzhimurad Ustarkhanov (ustarkhanov@gmail.com)
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN="vlan"
+WORK=${WORKBASE}/${MY_PN}
+
+SUMMARY="802.1Q vlan control utility"
+HOMEPAGE="http://www.candelatech.com/~greear/vlan.html"
+DOWNLOADS="http://www.candelatech.com/~greear/vlan/${MY_PN}.${PV}.tar.gz"
+LICENCES="GPL-2"
+SLOT="0"
+
+PLATFORMS="~amd64 ~x86"
+
+src_compile() {
+    emake purge
+    emake CCFLAGS="${CFLAGS}" STRIP="true" vconfig || die
+}
+
+src_install() {
+    into /
+    dosbin vconfig || die "dosbin error"
+    doman vconfig.8 || die "doman error"
+    dodoc CHANGELOG howto.html vlan.html
+}
