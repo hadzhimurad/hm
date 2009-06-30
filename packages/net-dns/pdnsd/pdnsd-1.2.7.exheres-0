@@ -31,6 +31,6 @@ DEFAULT_SRC_INSTALL_EXTRA_DOCS=( doc/txt/faq.txt
 
 src_install() {
     default
-    fowners pdnsd:pdnsd /var/cache/pdnsd
-    newinitd "${FILES}"/pdnsd.init pdnsd
+    fowners pdnsd:pdnsd /var/cache/${PN}
+    newinitd "${FILES}"/${PN}.init ${PN}
 }

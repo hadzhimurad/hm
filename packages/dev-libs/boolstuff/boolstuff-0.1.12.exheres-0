@@ -1,0 +1,15 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A C++ library that supports a few operations on boolean expression binary trees."
+HOMEPAGE="http://perso.b2b2c.ca/sarrazip/dev/boolstuff.html"
+DOWNLOADS="http://perso.b2b2c.ca/sarrazip/dev/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+src_prepare(){
+	# Since gcc-4.4 getopt returns -1 instead of EOF. Works for <gcc-4.3 as well
+	sed -i "s/EOF/-1/" src/commands/booldnf.cpp || die "gcc-4.4 sed failed"
+}
